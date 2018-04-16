@@ -24,8 +24,8 @@
 
 
 ## Example
-现状，刚完成了标一个点，以及互动展示gif
 1.rift.html
-</br>
 <img src="https://github.com/azcvcza/LOL-RIFT-MAP/blob/master/img/rift2.jpg"  ：hspace="10" vspace="6">
 </br>
+
+现状，刚完成了标一个点，以及互动展示gif
