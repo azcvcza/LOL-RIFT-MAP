@@ -24,8 +24,8 @@
 
 
 ## Example
-1.rift.html
-<img src="https://github.com/azcvcza/LOL-RIFT-MAP/blob/master/img/rift2.jpg"  ：hspace="10" vspace="6">
 </br>
+<img src="https://github.com/azcvcza/LOL-RIFT-MAP/blob/master/img/rift2.jpg"  hspace="10" vspace="6">
+
 
 现状，刚完成了标一个点，以及互动展示gif
