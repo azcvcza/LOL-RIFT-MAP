@@ -30,7 +30,7 @@
 
 ## Example
 </br>
-<img src="https://github.com/azcvcza/LOL-RIFT-MAP/blob/master/img/test.gif"  hspace="10" vspace="6">
+<img src="https://github.com/azcvcza/LOL-RIFT-MAP/blob/master/img/180423version.gif"  hspace="10" vspace="6">
 
 
 现状，刚完成了标一个点，以及互动展示gif
