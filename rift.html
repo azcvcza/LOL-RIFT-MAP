@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>rift corner.html</title>
+
+    </head>
+    <style>
+    #mid-bar {overflow:hidden;height:800px;}
+    .content {margin:0 200px;height:100%;background:red;}
+    #left-bar{float:left;width:287px;height:800px;margin-left:0;}
+    #right-bar{float:right;width:287px;height:800px;margin-right:0;}
+
+    </style>
+
+    <body>
+        <div id="right-bar" style="background: -webkit-linear-gradient(left  ,#141e30, #243b55)"; ></div>
+        <div id ="left-bar" style="background: -webkit-linear-gradient(right  ,#141e30, #243b55)";></div>
+        <div id="mid-bar">
+         <svg id ="container" style="width:100%;height:100%;z-index:-1;" >
+        <image id="image" width="100%" height="100%" xlink:href="img/rift2.jpg"></image>
+    </svg>
+</div>
+
+    <script type="text/javascript" src="d3/build/d3.js"></script>
+    <script>
+    /*
+    .on("mouseover",function(){
+        var xposition = parseFloat(d3.select(this).attr("x"));
+        var yposition = parseFloat(d3.select(this).attr("y"));
+        d3.select(this).transition(1000).attr("width","50").attr("height","50").attr("stroke","yellow");
+        console.log("x:"+xposition+",y:"+yposition);
+        mid.append("rect").attr("x",xposition).attr("y",yposition-50).attr("width",400).attr("height",50).attr("fill","lightgreen");
+        mid.append("text").attr("id","tip").attr("x",xposition).attr("y",yposition-25).attr("dy",".35em").text("高瑜精彩操作");
+        mid.append("image").attr("id","gif").attr("xlink:href", "img/test.gif").attr("x",xposition).attr("y",yposition).attr("width",400).attr("height",300);
+        console.log("mouse over happen");
+    })
+    .on("mouseout",function(){
+        d3.select(this).transition(1000).attr("width","30").attr("height","30").attr("stroke","green");
+        mid.select("rect").remove();
+        mid.select("#tip").remove();
+        mid.select("#gif").remove().transition(1000);
+
+        console.log("mouse out happen")
+    })
+
+    */
+//1.创建画布，贴上背景图
+//2.创建单个坐标点，附加上动画（鼠标进入离去）
+//3.增加tooltip,提示发生的事
+//4.加载gif
+//5.将左右留空的面板变成选择控件（当成选择用），一个以赛季区分，另一个还不知道
+//6.将坐标点替换成icon，可能的话(新的灵感是换成选手图片，可能的话事迹)
+    </script>
+        <script type="text/javascript">
+        /*<svg width="960px"  height="900px">
+        <image xlink:href="img/rift2.jpg"  x="200px"height="80%" width="100%"/>*/
+        //d3.select("#mid-bar").append("h1").text("helloworld").attr("z-index",2);
+
+        var input_data =[{id:"pdd-tower",x:170,y:270,id:"head_pdd",href:"img/head_pdd.png",width:30,height:30,description:"one gun four pdd",originWidth:30,originHeight:30},
+    ];
+        var position =[{x:190,y:260,id:"head_pdd",r:5,fill:"red"}];
+        /*  想做的控件,暂时将主要精力放在
+        var left=d3.select("#left-bar").append("svg").attr("id","left-bar");
+            left.append("rect").attr("x",10).attr("y",10).attr("width",20).attr("height",20).attr("fill","red")
+            attr("x",function(d){return d.x}).attr("y",function(d){return d.y}).attr("xlink:href",function(d){return d.href})
+            .attr("width",function(d){return d.width}).attr("height",function(d){return d.height});
+            */
+       //svg title 不能作为tips使用，会覆盖onmouseover事件，导致没办法执行下面的代码 2018/4/22
+
+        var mid= d3.select("#container")
+
+            mid.data(input_data).append("image").attr("id",function(d){return d.id}).attr("x",function(d){return d.x}).attr("y",function(d){return d.y}).attr("xlink:href",function(d){return d.href})
+            .attr("width",function(d){return d.width}).attr("height",function(d){return d.height})
+            .on("mouseenter",function(data){
+                //data : input_data -> id,x,y,id,href,width,height,description,originWidth,originHeight
+               //2018/4/23遗留：调整append tips 文字与矩形的关系
+                var newWidth = parseFloat(d3.select(this).attr("width"))+10;
+                var newHeight = parseFloat(d3.select(this).attr("height"))+10;
+                d3.select(this).transition(1000).attr("width",function(){return newWidth}).attr("height",function(){return newHeight});
+                mid.append("g").attr("id",data.id).append("rect").attr("x",data.x+30).attr("y",data.y-30).attr("rx",6).attr("ry",6).attr("width",100).attr("height",function(){return data.height}).
+                attr("fill","lightgreen")
+                d3.select("g").append("text").attr("x",data.x+30).attr("y",data.y-30).attr("font-family","Verdana").attr("font-size",function(){return data.height}).text(function(){return data.description});
+                d3.select("rect").append("text").attr("dy","1em").text("helloworld");
+                //console.log("now width:"+newWidth+",newHeight:"+newHeight);
+
+
+            })
+            .on("mouseout",function(data){
+
+                //console.log("now width:"+newWidth+",newHeight:"+newHeight);
+                d3.select(this).transition(1000).attr("width",data.originWidth).attr("height",data.originHeight);
+                mid.select("g").remove();
+            });
+
+
+</script>
+
+</body>
+
+</html>
